@@ -1,16 +1,32 @@
 ---
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Projects from '../components/Projects.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import '../styles/global.css';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOMAP Studio | Arte Audiovisual y Videomapping 3D</title>
+    <meta name="description" content="Estudio creativo especializado en la dirección artística, conceptualización y producción de contenidos visuales para videomapping monumental y espectáculos inmersivos." />
+  </head>
+  <body class="bg-black text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950">
+    
+    <Header />
+
+    <main>
+      <Hero />         <!-- 1. Portada cinemática con cuenta atrás y vídeo panorámico -->
+      <Services />     <!-- 2. Áreas de especialización (Arquitectónico, Eventos, Interior) -->
+      <Projects />     <!-- 3. Galería de obras y noticias recientes -->
+      <About />        <!-- 4. Perfil de Chema Siscar y trayectoria internacional -->
+      <Contact />      <!-- 5. Formulario de contratación y redes sociales -->
+    </main>
+
+  </body>
 </html>

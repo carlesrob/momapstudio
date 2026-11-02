@@ -1,0 +1,61 @@
+---
+// src/components/Services.astro
+const services = [
+  {
+    title: "Videomapping Monumental",
+    subtitle: "Proyecciones sobre fachadas y patrimonio",
+    desc: "Intervenciones a gran escala sobre monumentos históricos y arquitectura moderna. Ilusiones ópticas de volumen, profundidad y metamorfosis estructural.",
+    tag: "Arquitectónico"
+  },
+  {
+    title: "Escenarios & Espectáculos",
+    subtitle: "Celebraciones y eventos corporativos",
+    desc: "Diseñado para galas, presentaciones y festivales. Creamos escenografías dinámicas que envuelven al espectador y amplifican la identidad de marca.",
+    tag: "Eventos"
+  },
+  {
+    title: "Instalaciones Inmersivas",
+    subtitle: "Espacios museísticos y culturales",
+    desc: "Experiencias de interior para salas de exposiciones y museos. Proyecciones 360° y superficies tridimensionales orientadas a la percepción sensorial.",
+    tag: "Interior"
+  }
+];
+---
+
+<section id="servicios" class="relative bg-slate-950 text-white py-32 px-6 border-t border-slate-900">
+  <div class="max-w-7xl mx-auto space-y-16">
+    
+    <div class="text-center space-y-4 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-mono uppercase tracking-widest">
+        ÁREAS DE ESPECIALIZACIÓN
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight uppercase">
+        Ingeniería visual al servicio de la <span class="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-600 bg-clip-text text-transparent">emoción</span>
+      </h2>
+      <p class="text-slate-400 text-base md:text-lg font-light">
+        Soluciones artísticas y tecnológicas a medida para convertir cualquier superficie en una obra maestra en movimiento.
+      </p>
+    </div>
+
+    <!-- Grid de Servicios -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {services.map((item) => (
+        <div class="p-8 rounded-3xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm flex flex-col justify-between space-y-6 hover:border-amber-500/50 transition-colors group">
+          <div class="space-y-4">
+            <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-mono uppercase border border-amber-500/20">
+              {item.tag}
+            </span>
+            <h3 class="text-2xl font-bold tracking-tight group-hover:text-amber-300 transition-colors">
+              {item.title}
+            </h3>
+            <p class="text-sm font-medium text-slate-300">{item.subtitle}</p>
+            <p class="text-slate-400 text-sm leading-relaxed font-light">
+              {item.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

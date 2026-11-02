@@ -1,0 +1,114 @@
+---
+// src/components/Hero.astro
+---
+
+<section id="hero-section" class="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-slate-950 text-white py-12">
+  
+  <!-- RESPLANDORES DE LUZ AMBIENTAL (GLOWS) -->
+  <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-amber-500/20 rounded-full blur-[160px] pointer-events-none z-10 animate-pulse"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[160px] pointer-events-none z-10"></div>
+
+  <!-- CAPA PRINCIPAL DE CONTENIDO -->
+  <div class="relative w-full mx-auto px-4 sm:px-6 z-20 flex flex-col justify-between h-full space-y-8 my-auto">
+    
+    <!-- Parte Superior: Insignia -->
+    <div class="flex justify-center">
+      <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-amber-500/50 bg-slate-950/80 text-amber-300 text-xs font-mono uppercase tracking-[0.3em] backdrop-blur-xl shadow-[0_0_35px_rgba(245,158,11,0.4)]">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+        </span>
+        PROYECCIÓN MONUMENTAL & ARTE 3D
+      </div>
+    </div>
+
+    <!-- ZONA CENTRAL: CUENTA ATRÁS INICIAL O VÍDEO A ANCHO DE PANTALLA TOTAL -->
+    <div class="w-full flex items-center justify-center my-auto">
+      
+      <!-- Cuenta atrás cinemática (visible al principio) -->
+      <div id="countdown-box" class="flex flex-col items-center justify-center space-y-4 transition-all duration-500">
+        <span class="text-xs font-mono tracking-[0.4em] text-amber-400/90 uppercase">El espectáculo comienza en</span>
+        <div class="relative flex items-center justify-center">
+          <div class="w-28 h-28 md:w-36 md:h-36 rounded-full border-2 border-amber-500/40 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center shadow-[0_0_60px_rgba(245,158,11,0.3)]">
+            <span id="timer-num" class="text-5xl md:text-7xl font-black font-mono text-amber-400 animate-pulse">04</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vídeo principal: Ancho total de pantalla (w-full sin restricciones máximas) y alto proporcional -->
+      <div 
+        id="player-wrapper" 
+        class="hidden w-full aspect-video overflow-hidden border-y border-amber-500/40 shadow-[0_0_100px_rgba(245,158,11,0.4)] bg-black opacity-0 transition-all duration-1000 transform scale-95"
+      >
+        <iframe 
+          id="main-showreel-iframe"
+          class="w-full h-full pointer-events-none filter contrast-105 brightness-105"
+          src="" 
+          title="MOMAP Studio Showreel"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        ></iframe>
+      </div>
+
+    </div>
+
+    <!-- Parte Inferior: Títulos y Textos -->
+    <div id="hero-text-block" class="space-y-4 text-center max-w-4xl mx-auto transition-all duration-700">
+      <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.95] text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]">
+        ARQUITECTURA <br />
+        <span class="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent filter drop-shadow-[0_0_40px_rgba(245,158,11,0.8)]">
+          EN MOVIMIENTO
+        </span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-slate-200 text-base md:text-xl font-light tracking-wide leading-relaxed drop-shadow-lg">
+        Transformamos la piedra en lienzo digital. Experiencias inmersivas a gran escala diseñadas por <span class="text-white font-medium underline decoration-amber-500 decoration-2">Chema Siscar</span>.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Indicador inferior de Scroll -->
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 opacity-60 hover:opacity-100 transition-opacity">
+    <span class="text-[9px] uppercase font-mono tracking-[0.2em] text-slate-400">Scroll</span>
+    <div class="w-4 h-7 rounded-full border border-slate-500 flex justify-center p-0.5">
+      <div class="w-1 h-1.5 bg-amber-400 rounded-full animate-bounce"></div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  let seconds = 4;
+  const timerNum = document.getElementById('timer-num');
+  const countdownBox = document.getElementById('countdown-box');
+  const playerWrapper = document.getElementById('player-wrapper');
+  const iframe = document.getElementById('main-showreel-iframe') as HTMLIFrameElement;
+
+  const interval = setInterval(() => {
+    seconds--;
+    if (timerNum) {
+      timerNum.textContent = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    }
+
+    if (seconds <= 0) {
+      clearInterval(interval);
+      
+      // 1. Ocultar la cuenta atrás con suavidad
+      if (countdownBox) {
+        countdownBox.style.opacity = '0';
+        setTimeout(() => countdownBox.classList.add('hidden'), 500);
+      }
+
+      // 2. Mostrar el vídeo ocupando el 100% del ancho de la pantalla con su proporción 16:9 limpia
+      if (playerWrapper && iframe) {
+        iframe.src = "https://www.youtube-nocookie.com/embed/QEE2FznFCks?autoplay=1&mute=1&controls=0&loop=1&playlist=QEE2FznFCks&showinfo=0&rel=0&iv_load_policy=3&enablejsapi=1";
+        playerWrapper.classList.remove('hidden');
+        
+        setTimeout(() => {
+          playerWrapper.classList.remove('opacity-0', 'scale-95');
+          playerWrapper.classList.add('opacity-100', 'scale-100');
+        }, 50);
+      }
+    }
+  }, 1000);
+</script>

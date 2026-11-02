@@ -4,7 +4,12 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://carlesrob.github.io',
+  base: '/momapstudio',
   vite: {
     plugins: [tailwindcss()],
   },
 });
+
+
+

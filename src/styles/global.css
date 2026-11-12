@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+/* 1. Declaració de les fonts locals des de src/assets/fonts/ */
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. Assignació a la variable de tema de Tailwind v4 */
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* 3. Aplicació global */
+body {
+  font-family: var(--font-sans);
+}

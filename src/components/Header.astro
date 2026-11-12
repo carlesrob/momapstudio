@@ -1,15 +1,20 @@
 ---
 // src/components/Header.astro
+import { Image } from 'astro:assets';
+import logoHeader from '../assets/images/logo_header_60h.png';
 ---
 
 <header class="fixed top-0 left-0 w-full z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
   <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
     
-    <!-- Logotipo oficial horizontal -->
+    <!-- Logotipo oficial horizontal optimitzat amb Astro <Image /> -->
     <a href={import.meta.env.BASE_URL + '/'} class="flex items-center group py-2">
-      <img 
-        src={import.meta.env.BASE_URL + '/logo_header_60h.png'} 
+      <Image 
+        src={logoHeader} 
         alt="MOMAP Studio logo" 
+        height={60}
+        loading="eager"
+        fetchpriority="high"
         class="h-10 w-auto object-contain group-hover:scale-105 transition-transform"
       />
     </a>
